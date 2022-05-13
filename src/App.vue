@@ -1,15 +1,14 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <CounterPage />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { defineAsyncComponent } from '@vue/runtime-core'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CounterPage: defineAsyncComponent(() => /* webpackChunkName="CounterPage" */ import('@/components/CounterPage'))
   }
 }
 </script>
