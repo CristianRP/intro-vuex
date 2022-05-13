@@ -18,14 +18,19 @@ export default createStore({
       state.count += val
       state.lastMutation = 'incrementBy ' + val
       state.lastRandomInt = val
+    },
+    toggleLoading( state) {
+      state.isLoading = !state.isLoading
+      state.lastMutation = 'setLoading ' + state.isLoading
     }
   },
 
   actions: {
-    async incrementRandomInt( context ) {
-      this.isLoading = true
+    async incrementRandomInt( { commit } ) {
+      commit('toggleLoading')
       const value = await getRandomInt()
-      context.commit('incrementBy', value)
+      commit('incrementBy', value)
+      commit('toggleLoading')
     }
   }
 })
