@@ -2,7 +2,7 @@ import getRandomInt from '@/helpers/getRandomInt'
 import { createStore } from 'vuex'
 
 export default createStore({
-  state: {
+  state: { // data
     count: 1,
     lastMutation: 'none',
     isLoading: false,
@@ -25,12 +25,18 @@ export default createStore({
     }
   },
 
-  actions: {
+  actions: { // methods
     async incrementRandomInt( { commit } ) {
       commit('toggleLoading')
       const value = await getRandomInt()
       commit('incrementBy', value)
       commit('toggleLoading')
+    }
+  },
+
+  getters: { // computed
+    squareCount( state ) {
+      return state.count * state.count
     }
   }
 })
